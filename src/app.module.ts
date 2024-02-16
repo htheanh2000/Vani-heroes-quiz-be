@@ -4,6 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './user/entities/user.entity';
 import { HealthModule } from './health/health.module';
+import 'dotenv/config'
 
 @Module({
   imports: [
