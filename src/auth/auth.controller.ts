@@ -1,6 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from '../user/dtos/create-user.dto';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { LoginDto } from './dtos/login.dto';
 import { SignUpDto } from './dtos/signup.dto';
@@ -15,7 +14,7 @@ export class AuthController {
   @ApiResponse({ status: 201, description: 'The user has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Invalid input data.' })
   @ApiResponse({ status: 409, description: 'username already exists.' })
-  @ApiBody({ type: CreateUserDto })
+  @ApiBody({ type: SignUpDto })
   async signUp(@Body() signUpDto: SignUpDto) {
     return this.authService.signUp(signUpDto);
   }

@@ -7,5 +7,10 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @MinLength(6)
+  @IsString()
   password: string;
+
+  @IsNotEmpty()
+  @IsString()
+  phonenumber: string;
 }
