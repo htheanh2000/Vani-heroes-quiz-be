@@ -19,6 +19,17 @@ async function bootstrap() {
     .setDescription('The Quiz API description')
     .setVersion('1.0')
     .addTag('Quiz')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: 'Enter JWT token',
+        in: 'header',
+      },
+      'jwt', // This name here is important for matching up with @ApiBearerAuth() in your controller!
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
