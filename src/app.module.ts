@@ -4,6 +4,11 @@ import { AuthModule } from './auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './user/entities/user.entity';
 import { HealthModule } from './health/health.module';
+import { QuizModule } from './quiz/quiz.module';
+import { Quiz } from './quiz/entities/quiz.entity';
+import { Question } from './quiz/entities/question.entity';
+import { Option } from './quiz/entities/option.entity';
+
 import 'dotenv/config'
 
 @Module({
@@ -15,12 +20,12 @@ import 'dotenv/config'
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User], // Add all your models here
+      models: [User, Quiz, Option, Question], // Add all your models here
       autoLoadModels: true, // Auto load models
       synchronize: true, // Synchronize models with database
     }),
 
-    UserModule, AuthModule, HealthModule],
+    UserModule, AuthModule, HealthModule, QuizModule],
   controllers: [],
   providers: [],
 })
