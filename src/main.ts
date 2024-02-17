@@ -14,6 +14,14 @@ async function bootstrap() {
     disableErrorMessages: false, // set to true in production to prevent leaking sensitive errors
   }));
 
+   // Enable CORS
+   app.enableCors({
+    // Setup allowed origins or set it to true to allow all origins
+    origin: 'http://localhost:3000', // or true if you want to allow all origins
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Accept',
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Vani heros example')
     .setDescription('The Quiz API description')
