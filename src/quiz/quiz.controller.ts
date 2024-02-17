@@ -1,7 +1,7 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { QuizService } from './quiz.service';
 import { Quiz } from './entities/quiz.entity';
-import { ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('quizzes')
@@ -18,7 +18,8 @@ export class QuizController {
   @ApiResponse({ status: 404, description: 'Quiz not found.' })
   @ApiParam({ name: 'id', type: 'number' })
   @Get(':id')
-//   @UseGuards(AuthGuard('jwt')) // Secure this route
+  @ApiBearerAuth('access-token')
+  @UseGuards(AuthGuard('jwt')) // Secure this route
   async getQuizById(@Param('id') id: number): Promise<Quiz> {
     return this.quizService.findOne(id);
   }
