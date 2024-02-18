@@ -25,9 +25,16 @@ export class AuthService {
     const user = await this.validateUser(loginDto.phonenumber, loginDto.password);
     if (!user) throw new UnauthorizedException('Invalid credentials');
 
-    const payload = { user };
+    const payload = user.dataValues
+    console.log(payload);
+    
+    await this.userService.updateLastSignIn(payload.id) ;
+
     return {
       access_token: this.jwtService.sign(payload),
+      user: {
+        username: payload.username,
+      }
     };
 
   }
@@ -39,8 +46,15 @@ export class AuthService {
       password: password,
     });
 
-    const { password: _, ...result } = newUser;
-    return result;
+    const user = {
+      username: newUser.username,
+    }
+    return {
+      access_token: this.jwtService.sign(user),
+      user: {
+        username: newUser.username,
+      }
+    };
   }
 }
 

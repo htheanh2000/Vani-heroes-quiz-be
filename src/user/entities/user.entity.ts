@@ -17,4 +17,6 @@ export class User extends Model<User> {
   @Column({unique: true}) // duplication checked based on mobile phone number
   phonenumber: string;   // should be encrypted using AES256
 
+  @Column({ allowNull: true }) // Allows null values
+  lastsignin: Date
 }
