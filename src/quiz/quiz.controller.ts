@@ -19,7 +19,7 @@ export class QuizController {
   @ApiParam({ name: 'id', type: 'number' })
   @Get(':id')
   @ApiBearerAuth('access-token')
-  @UseGuards(AuthGuard('jwt')) // Secure this route
+  // @UseGuards(AuthGuard('jwt')) // Secure this route
   async getQuizById(@Param('id') id: number): Promise<Quiz> {
     return this.quizService.findOne(id);
   }
