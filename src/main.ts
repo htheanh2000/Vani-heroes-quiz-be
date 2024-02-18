@@ -15,12 +15,8 @@ async function bootstrap() {
   }));
 
    // Enable CORS
-   app.enableCors({
-    // Setup allowed origins or set it to true to allow all origins
-    origin: true, // or true if you want to allow all origins
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type, Accept',
-  });
+   app.enableCors();
+
 
   const config = new DocumentBuilder()
     .setTitle('Vani heros example')
